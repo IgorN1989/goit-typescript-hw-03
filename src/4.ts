@@ -24,19 +24,22 @@ abstract class House {
 
   constructor(protected key: Key) {}
 
-  public comeIn(person: Person) {
+  public comeIn(person: Person): void {
     if (!this.door) {
+        console.log("Door is closed!");
       return;
     }
     this.tenants.push(person);
+    console.log("Welcome!");
   }
 
   public abstract openDoor(key: Key): void;
 }
 
 class MyHouse extends House {
-  public openDoor(key: Key) {
+  public openDoor(key: Key): void {
     if (key.getSignature() !== this.key.getSignature()) {
+      console.log("Wrong key!");
       return;
     }
     this.door = true;
